@@ -8,12 +8,32 @@
     <div class="col-sm-12">
 
       <h1>All Cafes</h1>
-
+        <p>{{ cafes }}</p>
 	  <table class="table table-dark table-striped table-hover">
           <!-- This is where you will write the code to render a Bootstrap 
           Table that contains all the information from the 
           cafe-data.csv file. -->
-          <p>{{ cafes }}</p>
+          <thead>
+          <tr>
+              {% for column_name in cafes[0] %}
+                <th scope="col">{{ column_name }}</th>
+              {% endfor %}
+          </tr>
+          </thead>
+          <tbody>
+            {% for cafe in cafes[1:] %}
+                <tr>
+                    {% for i in range(7) %}
+                        {% if i == 1 %}
+                            <td><a href="{{ cafe[i] }}">Map link</a></td>
+                        {% else %}
+                            <td>{{ cafe[i] }}</td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+          </tbody>
+
   	  </table>
 
       <p><a href="#">Return to index page</a></p>
